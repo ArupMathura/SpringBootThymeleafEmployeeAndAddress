@@ -1,0 +1,50 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Add Address</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h3>Add New Address</h3>
+      <hr />
+
+      <form th:action="@{/address/saveAddress}" th:object="${address}" method="POST">
+        <input
+          type="text"
+          th:field="*{pin}"
+          class="form-control col-4 mb-4"
+          placeholder="Enter PIN"
+        />
+        <input
+          type="text"
+          th:field="*{state}"
+          class="form-control col-4 mb-4"
+          placeholder="Enter State"
+        />
+        <input
+          type="text"
+          th:field="*{city}"
+          class="form-control col-4 mb-4"
+          placeholder="Enter City"
+        />
+		<input
+          type="text"
+          th:field="*{area}"
+          class="form-control col-4 mb-4"
+          placeholder="Enter Area"
+        />
+
+        <button type="submit" class="btn btn-primary col-2">Save</button>
+        <input type="hidden" th:field="*{id}" />
+      </form>
+      <hr />
+      <a th:href="@{/address/list}">Back to list</a>
+    </div>
+  </body>
+</html>
