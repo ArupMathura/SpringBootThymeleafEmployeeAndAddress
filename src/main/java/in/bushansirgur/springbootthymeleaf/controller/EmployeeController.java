@@ -17,7 +17,7 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeRepository eRepo;
 	
-	@GetMapping({"/list", "/"})
+	@GetMapping({"/employee", "/", "/list"})
 	public ModelAndView getAllEmployees() {
 		ModelAndView mav = new ModelAndView("list-employees");
 		mav.addObject("employees", eRepo.findAll());
@@ -35,7 +35,7 @@ public class EmployeeController {
 	@PostMapping("/saveEmployee")
 	public String saveEmployee(@ModelAttribute Employee employee) {
 		eRepo.save(employee);
-		return "redirect:/list";
+		return "redirect:/employee";
 	}
 	
 	@GetMapping("/showUpdateForm")
@@ -49,6 +49,6 @@ public class EmployeeController {
 	@GetMapping("/deleteEmployee")
 	public String deleteEmployee(@RequestParam Long employeeId) {
 		eRepo.deleteById(employeeId);
-		return "redirect:/list";
+		return "redirect:/employee";
 	}
 }

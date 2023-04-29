@@ -1,9 +1,14 @@
 package in.bushansirgur.springbootthymeleaf.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -28,4 +33,8 @@ public class Employee {
 	private String email;
 	
 	private String department;
+	
+	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Address> addresses = new HashSet<>();
+
 }

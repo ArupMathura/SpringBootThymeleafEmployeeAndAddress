@@ -1,6 +1,7 @@
+<!-- 
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title>Add Address</title>
+    <title>Add Addresses</title>
 
     <link
       rel="stylesheet"
@@ -11,10 +12,10 @@
   </head>
   <body>
     <div class="container">
-      <h3>Add New Address</h3>
+      <h3>Add Addresses</h3>
       <hr />
 
-      <form th:action="@{/address/saveAddress}" th:object="${address}" method="POST">
+      <form th:action="@{/employee/{employeeId}/addresses(employeeId=${employee.id})}" th:object="${address}" method="POST">
         <input
           type="text"
           th:field="*{pin}"
@@ -33,7 +34,7 @@
           class="form-control col-4 mb-4"
           placeholder="Enter City"
         />
-		<input
+        <input
           type="text"
           th:field="*{area}"
           class="form-control col-4 mb-4"
@@ -44,7 +45,57 @@
         <input type="hidden" th:field="*{id}" />
       </form>
       <hr />
-      <a th:href="@{/address/list}">Back to list</a>
+      <a th:href="@{/employee/{employeeId}/addresslist(employeeId=${employee.id})}">Back to address list</a>
     </div>
   </body>
-</html>
+</html> 
+-->
+ 
+
+<!-- FreeMarker Template Language -->
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Addresses</title>
+</head>
+<body>
+    <h1>Employee Addresses</h1>
+    <p>
+		Employee ID: <span th:text="${employee.id}"></span><br> 
+		Name: <span th:text="${employee.name}"></span>
+	</p>
+    <h2>Add Address</h2>
+    <form method="post">
+      <table>
+          <tr>
+              <td>Pin:</td>
+              <td><input type="text" name="pin"/></td>
+          </tr>
+          <tr>
+              <td>State:</td>
+              <td><input type="text" name="state"/></td>
+          </tr>
+          <tr>
+              <td>City:</td>
+              <td><input type="text" name="city"/></td>
+          </tr>
+          <tr>
+              <td>Area:</td>
+              <td><input type="text" name="area"/></td>
+          </tr>
+          <tr>
+              <td colspan="2"><input type="submit" value="Add Address"/></td>
+          </tr>
+      </table>
+    </form>
+    <br>
+    <br>
+    <a th:href="@{/employee/{employeeId}/addresslist(employeeId=${employee.id})}">Back to address list</a>
+
+</body>
+</html> 
+
+
